@@ -5,7 +5,7 @@ one item at a time, using the ACCUMULATOR pattern.
         sequences, namely by MUTATING their elements.
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
+         their colleagues and Meghna Allamudi.
 """  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
@@ -22,8 +22,8 @@ def main():
     #   They launch annoying rg.RoseWindows on each run that you don't want
     #   until you get to TO DO 9 and 10.
     # ------------------------------------------------------------------
-    # run_test_draw_shapes()
-    # run_test_rectangles_from_circles()
+    run_test_draw_shapes()
+    run_test_rectangles_from_circles()
 
 
 def run_test_make_simple_list():
@@ -47,7 +47,10 @@ def run_test_make_simple_list():
     print('Actual:  ', actual)
 
     # Test 2 (add your test here):
-
+    expected = [205]
+    actual = make_simple_list(205, 205)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
 
 def make_simple_list(m, n):
     """
@@ -67,6 +70,10 @@ def make_simple_list(m, n):
       :type m: int
       :type n: int
     """
+    array = []
+    for k in range(m,n+1):
+        array = array + [k]
+    return array
     # ------------------------------------------------------------------
     # TODO: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
@@ -86,6 +93,17 @@ def run_test_make_simple_string():
     print('--------------------------------------------------')
     print('Testing the   make_simple_string   function:')
     print('--------------------------------------------------')
+
+    expected = '205-'
+    actual = make_simple_string(205, 205)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
+
+    expected = '5-6-7-8-9-10-11-12-13-'
+    actual = make_simple_string(5, 13)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
+
 
 
 def make_simple_string(m, n):
@@ -108,6 +126,10 @@ def make_simple_string(m, n):
       :type m: int
       :type n: int
     """
+    array = ''
+    for k in range(m, n + 1):
+        array = array + str(k) + '-'
+    return array
     # ------------------------------------------------------------------
     # TODO: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
@@ -128,6 +150,15 @@ def run_test_make_less_simple_string():
     print('Testing the   make_less_simple_string   function:')
     print('--------------------------------------------------')
 
+    expected = '205'
+    actual = make_simple_string(205, 205)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
+
+    expected = '5-6-7-8-9-10-11-12-13'
+    actual = make_simple_string(5, 13)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
 
 def make_less_simple_string(m, n):
     """
@@ -151,6 +182,10 @@ def make_less_simple_string(m, n):
       :type m: int
       :type n: int
     """
+    array = ''
+    for k in range(m, n):
+        array = array + str(k-1) + '-' + str(k)
+    return array
     # ------------------------------------------------------------------
     # TODO: 7. Implement and test this function.
     #   Note that you should write its TEST function first (above).
@@ -234,6 +269,9 @@ def draw_shapes(shapes, window):
       :type shapes:  list | tuple of rg._Shape
       :type window:  rg.RoseWindow
     """
+    for k in range(len(shapes)):
+        shapes[k].attach_to(window)
+    window.render(0.3)
     # ------------------------------------------------------------------
     # TODO: 9. Implement and test this function. Make sure you do TO DO 8 in main first!
     #     The testing code is already written for you (that you just enabled in TO DO 8).
@@ -345,6 +383,19 @@ def rectangles_from_circles(circles):
       :type circles:  list | tuple of rg.Circle
       :rtype: list of rg.Rectangles
     """
+    window = rg.RoseWindow()
+
+    for k in range(len(circles)):
+        circles[k].attach_to(window)
+        c1 = circles[k].center.x - circles[k].radius
+        c2 = circles[k].center.y - circles[k].radius
+        corner1 = rg.Point(c1,c2)
+        c3 = circles[k].center.x + circles[k].radius
+        c4 = circles[k].center.y + circles[k].radius
+        corner2 = rg.Point(c3,c4)
+        rectangle = rg.Rectangle(corner1,corner2)
+        rectangle.attach_to(window)
+    window.render()
     # ------------------------------------------------------------------
     # TODO: 10. Implement and test this function.
     #     The testing code is already written for you (above).

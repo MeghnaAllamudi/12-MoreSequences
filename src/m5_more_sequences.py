@@ -7,7 +7,7 @@ for ITERATING through SEQUENCES, including:
   -- The FIND pattern (via LINEAR SEARCH)
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
+         their colleagues and Meghna Allamudi.
 """  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
@@ -75,6 +75,11 @@ def sum_radii(circles):
       :type circles:  list | tuple of rg.Circle
       :rtype: int | float
     """
+    total = 0
+    for k in range(len(circles)):
+        total = total + circles[k].radius
+    return total
+
     # ------------------------------------------------------------------
     # TODO: 2. Implement and test this function.
     #     The testing code is already written for you (above).
@@ -150,6 +155,11 @@ def count_last_n_odds(integers, n):
       :type n: int
       :rtype: int
     """
+    count = 0
+    for k in range(len(integers)-n,len(integers)):
+        if integers[k] % 2 != 0:
+            count = count + 1
+    return count
     # ------------------------------------------------------------------
     # TODO: 3. Implement and test this function.
     #     The testing code is already written for you (above).
@@ -225,6 +235,17 @@ def index_of_first_negative(numbers):
       :type numbers: list | tuple of float | int
       :rtype: int
     """
+    for k in range(len(numbers)):
+       if numbers[k] < 0:
+            return k
+    for k in range(len(numbers)):
+        if numbers[k] > 0:
+            return -1
+
+
+
+
+
     # ------------------------------------------------------------------
     # TODO: 4. Implement and test this function.
     #     The testing code is already written for you (above).
@@ -283,6 +304,13 @@ def contains_an_a(s):
       :type s: str
       :rtype: bool
     """
+    for k in range(len(s)):
+        if s[k] == 'a':
+            return True
+    for k in range(len(s)):
+        if s[k] != 'a':
+            return False
+
     # ------------------------------------------------------------------
     # TODO: 5. Implement and test this function.
     #     The testing code is already written for you (above).
